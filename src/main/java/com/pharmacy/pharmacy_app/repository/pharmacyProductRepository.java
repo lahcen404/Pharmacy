@@ -1,4 +1,7 @@
 package com.pharmacy.pharmacy_app.repository;
 
-public class pharmacyProductRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface pharmacyProductRepository extends JpaRepository <pharmacyProductRepository, Long> {
+
 }
