@@ -4,6 +4,7 @@ import com.pharmacy.pharmacy_app.model.PharmacyProduct;
 import com.pharmacy.pharmacy_app.service.PharmacyProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,12 +15,12 @@ import java.util.List;
 
 public class PharmacyProductController {
 
-    private final PharmacyProductService productService;
+
     private final PharmacyProductService pharmacyProductService;
 
     @Autowired
-    public PharmacyProductController(PharmacyProductService productService, PharmacyProductService pharmacyProductService) {
-        this.productService = productService;
+    public PharmacyProductController( PharmacyProductService pharmacyProductService) {
+
         this.pharmacyProductService = pharmacyProductService;
     }
 
@@ -28,6 +29,9 @@ public class PharmacyProductController {
         return pharmacyProductService.getAllProducts();
     }
 
-
+    @GetMapping("/{id}")
+    public PharmacyProduct getProductById(@PathVariable Long id){
+        return pharmacyProductService.getProductById(id).orElseThrow();
+    }
 
 }

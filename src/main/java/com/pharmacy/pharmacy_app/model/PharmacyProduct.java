@@ -35,7 +35,9 @@ public class PharmacyProduct {
 
     private String description;
 
-
+    private Long getId(){
+        return this.id;
+    }
     public String getName() {
         return name;
     }
