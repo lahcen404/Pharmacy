@@ -1,7 +1,8 @@
 package com.pharmacy.pharmacy_app.service;
 
 
-import com.pharmacy.pharmacy_app.model.pharmacyProduct;
+import com.pharmacy.pharmacy_app.model.PharmacyProduct;
+
 import com.pharmacy.pharmacy_app.repository.PharmacyProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,24 +11,24 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class pharmacyProductService {
+public class PharmacyProductService {
 
     private final PharmacyProductRepository pharmacyProductRepository;
 
     @Autowired
-    public pharmacyProductService(PharmacyProductRepository pharmacyProductRepository) {
+    public PharmacyProductService(PharmacyProductRepository pharmacyProductRepository) {
         this.pharmacyProductRepository = pharmacyProductRepository;
     }
 
-    public List<pharmacyProduct> getAllProducts() {
+    public List<PharmacyProduct> getAllProducts() {
         return pharmacyProductRepository.findAll();
     }
 
-    public Optional<pharmacyProduct> getProductById(Long id) {
+    public Optional<PharmacyProduct> getProductById(Long id) {
         return pharmacyProductRepository.findById(id);
     }
 
-    public pharmacyProduct createProduct(pharmacyProduct product) {
+    public PharmacyProduct createProduct(PharmacyProduct product) {
         return pharmacyProductRepository.save(product);
     }
 
@@ -35,8 +36,9 @@ public class pharmacyProductService {
         pharmacyProductRepository.deleteById(id);
     }
 
-    public pharmacyProduct updateProduct(Long id, pharmacyProduct productDetails) {
-        pharmacyProduct product = pharmacyProductRepository.findById(id).orElseThrow();
+
+    public PharmacyProduct updateProduct(Long id, PharmacyProduct productDetails) {
+        PharmacyProduct product = pharmacyProductRepository.findById(id).orElseThrow();
         product.setName(productDetails.getName());
         product.setPrice(productDetails.getPrice());
         product.setQuantity(productDetails.getQuantity());
