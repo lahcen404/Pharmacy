@@ -42,7 +42,10 @@ public class PharmacyProductController {
         return pharmacyProductService.updateProduct(id,product);
     }
 
-
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable Long id) {
+        pharmacyProductService.deleteProduct(id);
+    }
 
 
 }
