@@ -1,12 +1,10 @@
 package com.pharmacy.pharmacy_app.controller;
 
 import com.pharmacy.pharmacy_app.model.PharmacyProduct;
+import com.pharmacy.pharmacy_app.repository.PharmacyProductRepository;
 import com.pharmacy.pharmacy_app.service.PharmacyProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +31,18 @@ public class PharmacyProductController {
     public PharmacyProduct getProductById(@PathVariable Long id){
         return pharmacyProductService.getProductById(id).orElseThrow();
     }
+
+    @PostMapping
+    public PharmacyProduct createProduct(@RequestBody PharmacyProduct product){
+        return pharmacyProductService.createProduct(product);
+    }
+
+    @PutMapping("/{id}")
+    public PharmacyProduct updateProduct(@PathVariable Long id, @RequestBody PharmacyProduct product) {
+        return pharmacyProductService.updateProduct(id,product);
+    }
+
+
+
 
 }

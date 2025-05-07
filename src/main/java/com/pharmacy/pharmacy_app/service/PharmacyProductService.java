@@ -32,9 +32,9 @@ public class PharmacyProductService {
         return pharmacyProductRepository.save(product);
     }
 
-    public void deleteProduct(Long id) {
-        pharmacyProductRepository.deleteById(id);
-    }
+
+
+
 
 
     public PharmacyProduct updateProduct(Long id, PharmacyProduct productDetails) {

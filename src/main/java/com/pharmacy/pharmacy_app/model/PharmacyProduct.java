@@ -21,51 +21,40 @@ public class PharmacyProduct {
 
     private Long id;
 
-    @NonNull
     @NotBlank(message = "Name is required ")
     private String name;
 
-    @NonNull
-    @NotBlank(message  = "Quantity is required")
+    //@NotBlank(message  = "Quantity is required")
     private int quantity;
 
-    @NonNull
-    @NotBlank(message  = "Price is required")
+    //@NotBlank(message  = "Price is required")
     private double price;
 
     private String description;
 
-    private Long getId(){
-        return this.id;
-    }
-    public String getName() {
+    //Getters & Setters
+        private Long getId(){return this.id;}
+        public String getName() {
         return name;
     }
-
-    public void setName(String newName) {
+        public void setName(String newName) {
         this.name = newName;
     }
-
-
-    public double getPrice() {
+        public double getPrice() {
         return price;
     }
-
-    public void setPrice(double price) {
+        public void setPrice(double price) {
         this.price = price;
     }
-
-    public int getQuantity() {
+        public int getQuantity() {
         return quantity;
     }
-
-    public void setQuantity(int quantity) {
+        public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
         public String getDescription() {
             return description;
         }
-
         public void setDescription(String description) {
             this.description = description;
         }
