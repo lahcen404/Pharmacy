@@ -61,7 +61,7 @@ This REST API simplifies inventory control and saves time in product management.
 | DELETE | `/api/products/{id}` | Delete a product            |
 
 ---
-
+## [Postman Link](https://postman.co/workspace/My-Workspace~49aab289-6de5-487b-8f91-58ce1aacf8db/collection/41299916-08bc485b-578d-472c-b064-85346b2cafb1?action=share&creator=41299916) 
 ## 🧑‍💻 Author
 
 **Lahcen Ait Maskour**
