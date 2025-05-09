@@ -3,6 +3,7 @@ package com.pharmacy.pharmacy_app.service;
 
 import com.pharmacy.pharmacy_app.dto.ProductDTO;
 import com.pharmacy.pharmacy_app.mapper.ProductDTOMapper;
+import com.pharmacy.pharmacy_app.mapper.ProductMapper;
 import com.pharmacy.pharmacy_app.model.PharmacyProduct;
 
 import com.pharmacy.pharmacy_app.repository.PharmacyProductRepository;
@@ -20,18 +21,22 @@ public class PharmacyProductService {
 
     private final PharmacyProductRepository pharmacyProductRepository;
     private final ProductDTOMapper productDTOMapper;
+    private final ProductMapper productMapper;
 
     @Autowired
-    public PharmacyProductService(PharmacyProductRepository pharmacyProductRepository, ProductDTOMapper productDTOMapper) {
+    public PharmacyProductService(PharmacyProductRepository pharmacyProductRepository, ProductDTOMapper productDTOMapper , ProductMapper productMapper) {
         this.pharmacyProductRepository = pharmacyProductRepository;
         this.productDTOMapper = productDTOMapper;
+        this.productMapper= productMapper;
 
     }
 
     public List<ProductDTO> getAllProducts() {
         return pharmacyProductRepository.findAll()
         .stream()
-        .map( productDTOMapper )
+        //.map( productDTOMapper )
+                //.map(product -> productMapper.toDTO(product) )
+                .map(productMapper::toDTO) //Method Reference
                 .collect(Collectors.toList());
     }
 
