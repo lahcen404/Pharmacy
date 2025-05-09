@@ -2,6 +2,7 @@ package com.pharmacy.pharmacy_app.service;
 
 
 import com.pharmacy.pharmacy_app.dto.ProductDTO;
+import com.pharmacy.pharmacy_app.mapper.ProductDTOMapper;
 import com.pharmacy.pharmacy_app.model.PharmacyProduct;
 
 import com.pharmacy.pharmacy_app.repository.PharmacyProductRepository;
@@ -18,19 +19,19 @@ import static java.util.Arrays.stream;
 public class PharmacyProductService {
 
     private final PharmacyProductRepository pharmacyProductRepository;
+    private final ProductDTOMapper productDTOMapper;
 
     @Autowired
-    public PharmacyProductService(PharmacyProductRepository pharmacyProductRepository) {
+    public PharmacyProductService(PharmacyProductRepository pharmacyProductRepository, ProductDTOMapper productDTOMapper) {
         this.pharmacyProductRepository = pharmacyProductRepository;
+        this.productDTOMapper = productDTOMapper;
+
     }
 
     public List<ProductDTO> getAllProducts() {
         return pharmacyProductRepository.findAll()
         .stream()
-        .map( product -> new ProductDTO(
-                        product.getName(),
-                        product.getPrice()
-                ) )
+        .map( productDTOMapper )
                 .collect(Collectors.toList());
     }
 
