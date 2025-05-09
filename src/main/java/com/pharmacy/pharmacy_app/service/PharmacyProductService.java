@@ -1,6 +1,7 @@
 package com.pharmacy.pharmacy_app.service;
 
 
+import com.pharmacy.pharmacy_app.dto.ProductDTO;
 import com.pharmacy.pharmacy_app.model.PharmacyProduct;
 
 import com.pharmacy.pharmacy_app.repository.PharmacyProductRepository;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 @Service
 public class PharmacyProductService {
@@ -20,8 +24,14 @@ public class PharmacyProductService {
         this.pharmacyProductRepository = pharmacyProductRepository;
     }
 
-    public List<PharmacyProduct> getAllProducts() {
-        return pharmacyProductRepository.findAll();
+    public List<ProductDTO> getAllProducts() {
+        return pharmacyProductRepository.findAll()
+        .stream()
+        .map( product -> new ProductDTO(
+                        product.getName(),
+                        product.getPrice()
+                ) )
+                .collect(Collectors.toList());
     }
 
     public Optional<PharmacyProduct> getProductById(Long id) {
