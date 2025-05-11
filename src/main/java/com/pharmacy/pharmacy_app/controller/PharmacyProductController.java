@@ -1,5 +1,6 @@
 package com.pharmacy.pharmacy_app.controller;
 
+import com.pharmacy.pharmacy_app.dto.ProductDTO;
 import com.pharmacy.pharmacy_app.model.PharmacyProduct;
 import com.pharmacy.pharmacy_app.repository.PharmacyProductRepository;
 import com.pharmacy.pharmacy_app.service.PharmacyProductService;
@@ -23,7 +24,7 @@ public class PharmacyProductController {
     }
 
     @GetMapping
-    public List<PharmacyProduct> getAllProducts(){
+    public List<ProductDTO> getAllProducts(){
         return pharmacyProductService.getAllProducts();
     }
 

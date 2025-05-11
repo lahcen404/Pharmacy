@@ -1,6 +1,9 @@
 package com.pharmacy.pharmacy_app.service;
 
 
+import com.pharmacy.pharmacy_app.dto.ProductDTO;
+import com.pharmacy.pharmacy_app.mapper.ProductDTOMapper;
+import com.pharmacy.pharmacy_app.mapper.ProductMapper;
 import com.pharmacy.pharmacy_app.model.PharmacyProduct;
 
 import com.pharmacy.pharmacy_app.repository.PharmacyProductRepository;
@@ -9,19 +12,32 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 @Service
 public class PharmacyProductService {
 
     private final PharmacyProductRepository pharmacyProductRepository;
+    private final ProductDTOMapper productDTOMapper;
+    private final ProductMapper productMapper;
 
     @Autowired
-    public PharmacyProductService(PharmacyProductRepository pharmacyProductRepository) {
+    public PharmacyProductService(PharmacyProductRepository pharmacyProductRepository, ProductDTOMapper productDTOMapper , ProductMapper productMapper) {
         this.pharmacyProductRepository = pharmacyProductRepository;
+        this.productDTOMapper = productDTOMapper;
+        this.productMapper= productMapper;
+
     }
 
-    public List<PharmacyProduct> getAllProducts() {
-        return pharmacyProductRepository.findAll();
+    public List<ProductDTO> getAllProducts() {
+        return pharmacyProductRepository.findAll()
+        .stream()
+        //.map( productDTOMapper )
+                //.map(product -> productMapper.toDTO(product) )
+                .map(productMapper::toDTO) //Method Reference
+                .collect(Collectors.toList());
     }
 
     public Optional<PharmacyProduct> getProductById(Long id) {
